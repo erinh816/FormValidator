@@ -6,3 +6,5 @@ Password
 Confirm Password
 
 Submit Button
+
+#Connect to mongoDB database
