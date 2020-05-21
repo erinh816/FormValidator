@@ -27,35 +27,62 @@ function isValidEmail(email) {
 	return re.test(String(email).toLowerCase());
 }
 
-//Event Listeners
+function checkRequired(inputArr) {
+	inputArr.forEach(function(input) {
+		// console.log(input.value);
+		if (input.value.trim() === '') {
+			console.log(input.id);
+			showError(input, `${getFieldName(input)} is required`);
+		} else {
+			showSuccess(input);
+		}
+	});
+}
+
+//Get fieldname (error message first letter capital)
+function getFieldName(input) {
+	return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+}
+
 form.addEventListener('submit', function(e) {
 	e.preventDefault();
-	//prevent it from actually submitting
-	// console.log(username.value);
-	if (username.value === '') {
-		// alert('Username is required');
-		showError(username, 'Username is required');
-	} else {
-		showSuccess(username);
-	}
 
-	if (email.value === '') {
-		showError(email, 'Email is required');
-	} else if (!isValidEmail(email.value)) {
-		showError(email, 'Email is not valid');
-	} else {
-		showSuccess(email);
-	}
-
-	if (password.value === '') {
-		showError(password, 'Password is required');
-	} else {
-		showSuccess(password);
-	}
-
-	if (password2.value === '') {
-		showError(password2, 'Password is required');
-	} else {
-		showSuccess(password2);
-	}
+	// checkRequired(username);
+	// checkRequired(email);
+	// checkRequired(password);
+	// checkRequired(password2);
+	checkRequired([ username, email, password, password2 ]);
 });
+
+//Event Listeners
+// form.addEventListener('submit', function(e) {
+// 	e.preventDefault();
+// 	//prevent it from actually submitting
+// 	// console.log(username.value);
+// 	if (username.value === '') {
+// 		// alert('Username is required');
+// 		showError(username, 'Username is required');
+// 	} else {
+// 		showSuccess(username);
+// 	}
+
+// 	if (email.value === '') {
+// 		showError(email, 'Email is required');
+// 	} else if (!isValidEmail(email.value)) {
+// 		showError(email, 'Email is not valid');
+// 	} else {
+// 		showSuccess(email);
+// 	}
+
+// 	if (password.value === '') {
+// 		showError(password, 'Password is required');
+// 	} else {
+// 		showSuccess(password);
+// 	}
+
+// 	if (password2.value === '') {
+// 		showError(password2, 'Password is required');
+// 	} else {
+// 		showSuccess(password2);
+// 	}
+// });
